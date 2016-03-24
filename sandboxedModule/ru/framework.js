@@ -5,10 +5,18 @@
 
 // Фреймворк может явно зависеть от библиотек через dependency lookup
 var fs = require('fs'),
-    vm = require('vm');
+    vm = require('vm'),
+    util = require('util');
 
 // Создаем контекст-песочницу, которая станет глобальным контекстом приложения
-var context = { module: {}, console: console };
+var context = { 
+	taskTimeout: setTimeout,
+	taskInterval: setInterval,
+	clearInterval: clearInterval,
+	module: {},
+	util: util,
+	console: copyObj(console) 
+};
 context.global = context;
 var sandbox = vm.createContext(context);
 
@@ -16,6 +24,7 @@ var sandbox = vm.createContext(context);
 var fileName = './application.js';
 fs.readFile(fileName, function(err, src) {
   // Тут нужно обработать ошибки
+  if(err) return console.log(err);
   
   // Запускаем код приложения в песочнице
   var script = vm.createScript(src, fileName);
@@ -24,3 +33,18 @@ fs.readFile(fileName, function(err, src) {
   // Забираем ссылку из sandbox.module.exports, можем ее исполнить,
   // сохранить в кеш, вывести на экран исходный код приложения и т.д.
 });
+
+function copyObj(obj){
+	var newObj = {};
+	for(var i in obj){
+		newObj[i] = obj[i];
+	}
+	return newObj;
+}
+
+context.console.log = function(message){
+	var time = new Date().toLocaleTimeString();
+	console.log(fileName + " " + time + " " + message);
+	var file = fs.createWriteStream('result.txt', {flags: 'a+'});
+	file.write(" " + fileName + " " + time + " " + message + '\n');
+}
