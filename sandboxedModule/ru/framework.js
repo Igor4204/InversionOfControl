@@ -24,7 +24,7 @@ var sandbox = vm.createContext(context);
 var fileName = './application.js';
 fs.readFile(fileName, function(err, src) {
   // Тут нужно обработать ошибки
-  if(err) return console.log(er);
+  if(err) return console.log(err);
   
   // Запускаем код приложения в песочнице
   var script = vm.createScript(src, fileName);

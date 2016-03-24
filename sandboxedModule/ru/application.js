@@ -21,7 +21,7 @@ var obj = {
 	a: 'Lab',
 	b: 1,
 	c: 'task',
-	d: 2123
+	d: 2
 }
 obj.self = obj;
 console.log(util.inspect(obj));
