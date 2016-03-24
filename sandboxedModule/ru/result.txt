@@ -1,9 +1,9 @@
- ./application.js 20:51:46 From application global context
- ./application.js 20:51:46 { a: 'Lab', b: 1, c: 'task', d: 21, self: [Circular] }
- ./application.js 20:51:46 false
- ./application.js 20:51:46 false
- ./application.js 20:51:46 true
- ./application.js 20:51:47 Timeout
- ./application.js 20:51:48 Interval
- ./application.js 20:51:50 Interval
- ./application.js 20:51:52 Interval
+ ./application.js 21:57:20 From application global context
+ ./application.js 21:57:20 { a: 'Lab', b: 1, c: 'task', d: 2, self: [Circular] }
+ ./application.js 21:57:20 false
+ ./application.js 21:57:20 false
+ ./application.js 21:57:20 true
+ ./application.js 21:57:21 Timeout
+ ./application.js 21:57:22 Interval
+ ./application.js 21:57:24 Interval
+ ./application.js 21:57:26 Interval
